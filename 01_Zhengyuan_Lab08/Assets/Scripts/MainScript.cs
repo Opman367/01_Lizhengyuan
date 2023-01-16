@@ -15,12 +15,22 @@ public class MainScript : MonoBehaviour
     private float ConvertedUSD;
     private float ConvertedYen;
 
+    //Added by noel
+    public Toggle MYRToggle;
+    public Toggle TWDToggle;
+    private const float MYRinSGD = 3.27f;
+    private const float TWDinSGD = 22.96f;
+    private float ConvertedAmount;
+
     // Start is called before the first frame update
     void Start()
     {
         USDtoggle.isOn = false;
         JapneseYentoggle.isOn = false;
-
+        
+        //added by noel
+        MYRToggle.isOn = false;
+        TWDToggle.isOn = false;
     }
 
     // Update is called once per frame
@@ -32,19 +42,39 @@ public class MainScript : MonoBehaviour
             if (USDtoggle.isOn == true)
             {
                 JapneseYentoggle.enabled = false;
-            }
-            else
-            {
-                JapneseYentoggle.enabled = true;
+                //added by noel
+                MYRToggle.enabled = false;
+                TWDToggle.enabled = false;
             }
             if (JapneseYentoggle.isOn == true)
             {
                 USDtoggle.enabled = false;
+                //added by noel
+                MYRToggle.enabled = false;
+                TWDToggle.enabled = false;
+            }
+            if (MYRToggle.isOn == true)
+            {
+                //added by noel
+                USDtoggle.enabled = false;
+                JapneseYentoggle.enabled = false;
+                TWDToggle.enabled = false;
+            }
+            if (TWDToggle.isOn == true)
+            {
+                //added by noel
+                USDtoggle.enabled = false;
+                JapneseYentoggle.enabled = false;
+                MYRToggle.enabled = false;
             }
             else
             {
+                //added by noel
                 USDtoggle.enabled = true;
-            }
+                JapneseYentoggle.enabled = true;
+                MYRToggle.enabled = true;
+                TWDToggle.enabled = true;
+        }
 
     }
     public void ConvertBtn()
@@ -63,6 +93,17 @@ public class MainScript : MonoBehaviour
                 ConvertedYen = InputNumber * YENinSGD;
                 ConvertedValue.text = ConvertedYen.ToString() + " Yen";
             }
+            //added by noel
+            if (MYRToggle.isOn == true)
+            {
+                ConvertedAmount = InputNumber * MYRinSGD;
+                ConvertedValue.text = "" + ConvertedAmount + " MYR";
+            }
+            if (TWDToggle.isOn == true)
+            {
+                ConvertedAmount = InputNumber * TWDinSGD;
+                ConvertedValue.text = "" + ConvertedAmount + " TWD";
+            }
         }
         catch
         {
@@ -80,5 +121,11 @@ public class MainScript : MonoBehaviour
         AmountInputField.text = "";
         ConvertedValue.text = "";
         DebuggingText.text = "Debugging";
+
+        //added by noel
+        MYRToggle.enabled = true;
+        USDtoggle.isOn = false;
+        TWDToggle.enabled = true;
+        TWDToggle.isOn = false;
     }
 }

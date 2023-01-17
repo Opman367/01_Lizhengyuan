@@ -124,7 +124,7 @@ public class MainScript : MonoBehaviour
 
         //added by noel
         MYRToggle.enabled = true;
-        USDtoggle.isOn = false;
+        MYRToggle.isOn = false;
         TWDToggle.enabled = true;
         TWDToggle.isOn = false;
     }
